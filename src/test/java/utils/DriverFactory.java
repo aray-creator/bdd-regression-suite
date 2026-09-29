@@ -10,10 +10,18 @@ public class DriverFactory {
 
     public static void initDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
-            options.addArguments("--headless=new", "--window-size=1920,1080");
+
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+
+        if (headless) {
+            options.addArguments("--headless=new");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+        } else {
+            options.addArguments("--start-maximized");
         }
+
         DRIVER.set(new ChromeDriver(options));
     }
 
