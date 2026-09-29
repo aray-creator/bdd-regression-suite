@@ -1,0 +1,5 @@
+test_id,first_name,last_name,postal_code,expected_result,expected_message
+CH01,John,Doe,12345,success,Thank you for your order!
+CH02,,Doe,12345,error,First Name is required
+CH03,John,,12345,error,Last Name is required
+CH04,John,Doe,,error,Postal Code is required

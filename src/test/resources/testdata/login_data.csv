@@ -1,0 +1,6 @@
+test_id,username,password,expected_result,expected_message
+TC01,standard_user,secret_sauce,success,
+TC02,locked_out_user,secret_sauce,error,this user has been locked out
+TC03,standard_user,wrong_pass,error,Username and password do not match
+TC04,,secret_sauce,error,Username is required
+TC05,standard_user,,error,Password is required
