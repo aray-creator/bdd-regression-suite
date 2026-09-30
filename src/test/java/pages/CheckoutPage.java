@@ -29,10 +29,16 @@ public class CheckoutPage {
         driver.findElement(lastName).sendKeys(last);
         driver.findElement(postalCode).sendKeys(postal);
         driver.findElement(continueButton).click();
+
+        // Wait for either successful navigation to step-two, OR an error message to appear
+        wait.until(webDriver ->
+                webDriver.getCurrentUrl().contains("checkout-step-two")
+                        || !webDriver.findElements(errorMessage).isEmpty()
+        );
     }
 
     public void finishCheckout() {
-        driver.findElement(finishButton).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(finishButton)).click();
     }
 
     public String getErrorText() {
